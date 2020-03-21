@@ -92,3 +92,24 @@ gcloud compute firewall-rules create default-puma-server\
   --source-ranges=0.0.0.0/0 \
   --target-tags=puma-server
 ```
+
+## HomeWork 5 Сборка образов при помощи Packer
+
+- Был собран базовый образ с помощью Packer, с установленным Ruby и MongoDB
+- Из образа был запущен инстанс ВМ и вручную установлено приложение
+- Изучен механизм параметризации шаблонов Packer, для примера приложен файл variables.json.example
+- Создан baked образ с установленным приложеним, в котором устанавливается приложение и настраивается автозапуск через [systemd](https://github.com/puma/puma/blob/master/docs/systemd.md)
+- Написана команда создания инстанса из baked образа
+
+
+### Команда для создания инстанса из своего образа
+
+```
+gcloud compute instances create reddit-app-full\
+  --boot-disk-size=10GB \
+  --image=reddit-full-1584813002 \
+  --machine-type=g1-small \
+  --tags puma-server \
+  --zone=europe-west3-c	\
+  --restart-on-failure
+```

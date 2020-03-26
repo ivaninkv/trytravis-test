@@ -96,10 +96,11 @@ gcloud compute firewall-rules create default-puma-server\
 ## HomeWork 5 Сборка образов при помощи Packer
 
 - Был собран базовый образ с помощью Packer, с установленным Ruby и MongoDB
+  - `packer build -var-file=variables.json ubuntu16.json`
 - Из образа был запущен инстанс ВМ и вручную установлено приложение
 - Изучен механизм параметризации шаблонов Packer, для примера приложен файл variables.json.example
-- Создан baked образ с установленным приложеним, в котором устанавливается приложение и настраивается автозапуск через [systemd](https://github.com/puma/puma/blob/master/docs/systemd.md)
-- Написана команда создания инстанса из baked образа
+- Создан `baked` образ с установленным приложеним, в котором устанавливается приложение и настраивается автозапуск через [systemd](https://github.com/puma/puma/blob/master/docs/systemd.md)
+- Написана команда создания инстанса из `baked` образа
 
 
 ### Команда для создания инстанса из своего образа
@@ -113,3 +114,15 @@ gcloud compute instances create reddit-app-full\
   --zone=europe-west3-c	\
   --restart-on-failure
 ```
+
+## HomeWork 6 Практика IaC с Terraform
+
+- Был описан файл `main.tf` и развернута инфраструктура на его основе.
+  - Развернули базовый образ
+  - Добавили ssh-ключ
+  - Добавили правило файервола
+  - Добавили тэги
+- Был добавлен файл `outputs.tf` для вывода значений в консоль при создании инстанса
+  - `app_external_ip`
+- Был добавлен файл `variables.tf` в котором описаны некоторые переменные
+- Был добавлен файл `terraform.tfvars` в котором прописаны значения переменных

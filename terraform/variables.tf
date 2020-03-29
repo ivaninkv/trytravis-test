@@ -13,3 +13,12 @@ variable public_key_path {
 variable disk_image {
   description = "Disk image"
 }
+variable "private_key" {
+  description = "Private key for ssh connection"
+}
+variable "zone" {
+  default = "europe-west1-b"
+}
+variable "project_ssh_keys" {
+  type = map(string)
+}

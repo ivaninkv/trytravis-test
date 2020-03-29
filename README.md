@@ -117,6 +117,8 @@ gcloud compute instances create reddit-app-full\
 
 ## HomeWork 6 Практика IaC с Terraform
 
+**Основное ДЗ**
+
 - Был описан файл `main.tf` и развернута инфраструктура на его основе.
   - Развернули базовый образ
   - Добавили ssh-ключ
@@ -126,3 +128,8 @@ gcloud compute instances create reddit-app-full\
   - `app_external_ip`
 - Был добавлен файл `variables.tf` в котором описаны некоторые переменные
 - Был добавлен файл `terraform.tfvars` в котором прописаны значения переменных
+
+**Задание со***
+
+* Добавлены `SSH`-ключи для пользователей `appuser1` и `appuser2` в метаданные проекта. Документация по [ссылке](https://www.terraform.io/docs/providers/google/r/compute_project_metadata.html).
+* При добавлении `ssh`-ключей через `Terraform`, все ключи, созданные через web-интерфейс ***удаляются***.

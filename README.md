@@ -142,3 +142,43 @@ gcloud compute instances create reddit-app-full\
 **Проблемы текущей реализации**
 
 * Текущая конфигурация подразумевает несколько инстансов с приложением и БД, которая находится на том же инстансе. Основная проблема - синхронизация данных, её сейчас нет и каждый экземпляр приложения работает со своей БД.
+
+
+## HomeWork 7 Принципы организации инфраструктурного кода
+
+**Основное ДЗ**
+
+* Добавили правило файервола по умолчанию для `SSH`.
+* Импортировали существующее правило в `terraform.tfstate`.
+* Проверили неявные зависимости на примере IP адреса ресурса.
+* Разбили конфиг `main.tf` на несколько файлов:
+  * `app.tf`
+  * `db.tf`
+  * `vpc.tf`
+* Подготовленные на предыдущем шаге файлы превратили в модули для повторного переиспользования.
+* Постарались максимально параметризировать модули для более гибкого испольщования. Для многих параметров задали умолчания.
+* Создали окружение `stage` и `prod`, в которых использовали созданные ранее модули.
+* Проверили работу с реестром модулей на примере модуля `"SweetOps/storage-bucket/google"`.
+
+**Задание со***
+
+* Для директорий `prod` и `stage` было настроено хранение стейт файла на `Google Cloud Storage`, с помощью файла `backend.tf`.
+* Были удалены файлы `terraform.tfstate` и запущены параллельно команды в каталоге `satge` и его копии. В одном случае получаем ошибку блокировки:
+```
+Error: Error locking state: Error acquiring the state lock: writing "gs://storage-bucket-ikv/gcs-app/default.tflock" failed: googleapi: Error 412: Precondition Failed, conditionNotMet
+Lock Info:
+  ID:        1585717410080232
+  Path:      gs://storage-bucket-ikv/gcs-app/default.tflock
+  Operation: OperationTypeApply
+  Who:       const@notebook
+  Version:   0.12.24
+  Created:   2020-04-01 05:03:31.7583012 +0000 UTC
+  Info:
+
+
+Terraform acquires a state lock to protect the state from being written
+by multiple users at the same time. Please resolve the issue above and try
+again. For most commands, you can disable locking with the "-lock=false"
+flag, but this is not recommended.
+```
+* Из обеих директорий (оригинала и копии) видно состояние инфраструктуры.

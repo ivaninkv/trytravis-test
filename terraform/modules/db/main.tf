@@ -15,6 +15,20 @@ resource "google_compute_instance" "db" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
+  connection {
+    type        = "ssh"
+    host        = self.network_interface[0].network_ip
+    user        = "appuser"
+    private_key = file(var.private_key_path)
+    agent       = "false"
+    timeout     = "1m"
+
+    bastion_host        = var.bastion_ip
+    bastion_private_key = file(var.private_key_path)
+  }
+  provisioner "remote-exec" {
+    script = "${path.module}/files/mongo_bindip.sh"
+  }
 }
 
 resource "google_compute_firewall" "firewall_mongo" {

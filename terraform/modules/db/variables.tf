@@ -13,6 +13,9 @@ variable "db_disk_image" {
 variable public_key_path {
   description = "Path to the public key used for ssh access"
 }
+variable "private_key_path" {
+  description = "Path to the private key used for ssh access"
+}
 variable "machine_type" {
   default = "g1-small"
 }
@@ -21,4 +24,7 @@ variable "mongo_protocol" {
 }
 variable "mongo_ports" {
   default = ["27017"]
+}
+variable "bastion_ip" {
+  description = "IP address of bastion host"
 }

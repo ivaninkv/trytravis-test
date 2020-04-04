@@ -18,8 +18,25 @@ resource "google_compute_instance" "app" {
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"
   }
+  connection {
+    type        = "ssh"
+    host        = self.network_interface[0].access_config[0].nat_ip
+    user        = "appuser"
+    private_key = file(var.private_key_path)
+    agent       = "false"
+    timeout     = "1m"
+  }
+  provisioner "file" {
+    source      = "${path.module}/files/puma.service"
+    destination = "/tmp/puma.service"
+  }
+  provisioner "remote-exec" {
+    inline = ["sed -i s/db_private_ip/${var.db_url}/ /tmp/puma.service"]
+  }
+  provisioner "remote-exec" {
+    script = "${path.module}/files/deploy.sh"
+  }
 }
-
 resource "google_compute_address" "app_ip" {
   name = "reddit-app-ip"
 }

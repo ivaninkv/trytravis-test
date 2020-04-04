@@ -1,0 +1,4 @@
+project           = "infra-123456"
+public_key_path   = "~/.ssh/appuser.pub"
+app_source_ranges = ["185.32.135.171/32"]
+ssh_source_ranges = ["185.32.135.171/32"]

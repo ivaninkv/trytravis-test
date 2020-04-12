@@ -9,6 +9,11 @@ output "db_private_ip" {
   value       = module.db.db_private_ip
 }
 
+output "db_external_ip" {
+  description = "The private ip address of the db"
+  value       = module.db.db_external_ip
+}
+
 output "bastion_ip" {
   description = "The bastion ip address"
   value       = "${google_compute_instance.bastion.network_interface[0].access_config[0].nat_ip}"

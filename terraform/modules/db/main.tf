@@ -11,6 +11,7 @@ resource "google_compute_instance" "db" {
   }
   network_interface {
     network = "default"
+    access_config {} # нужен внешний IP для ДЗ по ansible
   }
   metadata = {
     ssh-keys = "appuser:${file(var.public_key_path)}"

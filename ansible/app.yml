@@ -3,7 +3,7 @@
   hosts: app
   become: true
   vars:
-    db_host: 10.132.0.10
+    db_host: "{{ hostvars[groups['db'][0]]['ansible_default_ipv4']['address'] }}" #10.132.0.10
   tasks:
     - name: Add unit file for Puma
       copy:

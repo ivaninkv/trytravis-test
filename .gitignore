@@ -6,3 +6,5 @@ packer/variables.json
 *.tfvars
 .terraform/
 *.retry
+
+devops-infra-271113-03dd569482c9.json

@@ -216,3 +216,21 @@ flag, but this is not recommended.
 В [статье](https://medium.com/@Nklya/динамическое-инвентори-в-ansible-9ee880d540d6) описаны варианты получения динамаческого `inventory`:
   * Написание своего скрипта, который должен являться испольняемым файлом и поддерживать определенный интерфейс командной строки.
   * Начиная с `Ansible` версии 2.4. поддерживаются [Inventory Plugins](https://docs.ansible.com/ansible/latest/plugins/inventory.html#inventory-plugins) где данная задача решается декларативным описанием `dynamic inventory` в `yml` файле. [Пример](https://docs.ansible.com/ansible/latest/plugins/inventory/gcp_compute.html) для `GCP`.
+
+
+## HomeWork 9 Расширенные возможности Ansible
+
+**Основное задание**
+
+* Попробовали разные подходы в организации кода:
+  * Один плейбук, один сценарий - код превращается в большую кашу, неудобно управлять запуском сценариев. Приходится много параметров передавать через параметры командной строки - указывать как нужные таски (по тегам `--tags`), так и `--limit` для указания групп хостов.
+  * Один плейбук, несколько сценариев - код также в одном файле, что неудобно. Организован чуть лучше чем в первом варианте. Теперь для запуска нудно передавать только `--tags` тасок.
+  * Несколько плейбуков - наиболее удобный вариант. Мы избавились от необходимости указывать группы хостов и теги. Имеем один врехнеуровневый плейбук из которого вызываются остальные, инкаспулируюшие логику своей работы.
+
+**Задание со***
+
+В качестве динамического инвентори будем использовать плагин `gcp_compute`. Создадим группы по маске имени инстанса. Для получения информации о других хостах, будем использовать `hostvars`. Подробнее по ссылкам ниже.
+* [Пример 1](https://medium.com/@Temikus/ansible-gcp-dynamic-inventory-2-0-7f3531b28434)
+* [Пример 2](http://matthieure.me/2018/12/31/ansible_inventory_plugin.html)
+* [gcp_compute](https://docs.ansible.com/ansible/latest/plugins/inventory/gcp_compute.html)
+* [hostvars](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#accessing-information-about-other-hosts-with-magic-variables)

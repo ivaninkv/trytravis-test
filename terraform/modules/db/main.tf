@@ -27,9 +27,9 @@ resource "google_compute_instance" "db" {
     bastion_host        = var.bastion_ip
     bastion_private_key = file(var.private_key_path)
   }
-  provisioner "remote-exec" {
-    script = "${path.module}/files/mongo_bindip.sh"
-  }
+  # provisioner "remote-exec" {
+  #   script = "${path.module}/files/mongo_bindip.sh"
+  # }
 }
 
 resource "google_compute_firewall" "firewall_mongo" {

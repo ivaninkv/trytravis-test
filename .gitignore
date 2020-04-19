@@ -5,3 +5,6 @@ packer/variables.json
 *.tfstate.backup
 *.tfvars
 .terraform/
+*.retry
+
+devops-infra-271113-03dd569482c9.json

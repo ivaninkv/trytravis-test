@@ -1,0 +1,14 @@
+---
+plugin: gcp_compute
+projects:
+  - devops-infra-271113
+zones:
+  - europe-west1-b
+hostnames:
+  - public_ip # private_ip - вернет локальные адреса
+filters: []
+groups:
+  app: "'app' in name"
+  db: "'db' in name"
+auth_kind: serviceaccount
+service_account_file: "../devops-infra-271113-03dd569482c9.json"

@@ -1,0 +1,8 @@
+---
+- name: Configure app host
+  hosts: app
+  become: true
+  # vars:
+  #   db_host: "{{ hostvars[groups['db'][0]]['ansible_default_ipv4']['address'] }}" #10.132.0.10
+  roles:
+    - app

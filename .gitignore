@@ -8,3 +8,5 @@ packer/variables.json
 *.retry
 
 devops-infra-271113-03dd569482c9.json
+
+jdauphant.nginx

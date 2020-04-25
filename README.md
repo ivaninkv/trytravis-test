@@ -1,5 +1,7 @@
-# ivaninkv_infra
-ivaninkv Infra repository
+# ivaninkv Infra repository
+
+![build image](https://travis-ci.com/Otus-DevOps-2020-02/ivaninkv_infra.svg?branch=master)
+
 
 ## HomeWork 3 Bastion
 
@@ -235,3 +237,20 @@ flag, but this is not recommended.
 * [Пример 2](http://matthieure.me/2018/12/31/ansible_inventory_plugin.html)
 * [gcp_compute](https://docs.ansible.com/ansible/latest/plugins/inventory/gcp_compute.html)
 * [hostvars](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#accessing-information-about-other-hosts-with-magic-variables)
+
+## HomeWork 10 Ansible: работа с ролями и окружениями
+
+**Основное задание**
+
+* Перенесли созданные ранее плейбуки в раздельные роли
+* Описали два окружения `stage` и `prod` для плейбуков
+* Настроили роль `jdauphant.nginx` из Ansible Galaxy
+* Использовали Ansible Vault для шифрования данных в файлах
+
+**Задание со***
+
+Динамический инвентори заработал из прошлого задания, нужно было только поменять путь к `inventory` файлу в конфиге.
+
+**Задание с****
+
+* Добавлен бейдж со статусом билда ветки `master`.

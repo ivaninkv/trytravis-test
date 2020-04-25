@@ -9,7 +9,8 @@ notifications:
       secure: RjK8wxM29GDJZzFEx9WO8YEtacigJFEJaV+1MWukPMjQZ1DT4mPKG5o2x3YebKuAcYKbNZTU42seJvzuuhwOFAx+Kp0kUawW4u8yz0e63FPdR7TQ/eVU4w+k234S1IcNJjvyCYqdQ+8s5DXSfM9J5RGC8FmQvy+EfIcl1/LijjyCOnQSpRPMEmmbg18Wcq0fmUZrM8gspnm10bE7XtummTjuQTUP4m4cTYG0WBFfy1Egn/jKEHvnpPWyLdrcLcFloh5C1yX1twNOgd+CnK40ZER217CPaBCTxLyC0DflwMWXsATiM8RbU3k4cOMOy2n+uEqiDp8ebuvpsVYtaFwgdG3YD49iscI+vHYFTpOsOhYcYSGTRLzllDOWHO8ZIUd37aUGbqfxp+5XHfR+aZgY1wIRkMRowYStPtvgh5OeHpOnpi8++WQI1qab498FPVNUHRpll01T45P+Lo7CF+12kpO0kykjERmR3teA3TGli6aELn18BH/xR4UPcsSmtJNWbK0t6fEwYiSbSAL3ikXBI0EMuLU4VMsFxooGpY2pA+ifYFK7oPc0TWZy8s6luoUkc5GK3JSMaOADPDMERdQRwIwvslVkzG1gWZLR5kXhio2GSu1Q3BYYqYvBaYax1Or67FCvP3Sa8IzksUtE+v9Tb/g2aweaFDmLQ06/HlRW5NI=
 
 install:
-  - cd /tmp
+  - mkdir tmp
+  - cd tmp
   - wget https://releases.hashicorp.com/packer/1.5.5/packer_1.5.5_linux_amd64.zip
   - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
   - wget https://github.com/terraform-linters/tflint/releases/download/v0.15.4/tflint_linux_amd64.zip
@@ -17,10 +18,10 @@ install:
   - sudo unzip -o -d /usr/local/bin/ packer_1.5.5_linux_amd64.zip
   - sudo unzip -o -d /usr/local/bin/ terraform_0.12.24_linux_amd64.zip
   - sudo unzip -o -d /usr/local/bin/ tflint_linux_amd64.zip
-  - rm packer_1.5.5_linux_amd64.zip
-  - rm terraform_0.12.24_linux_amd64.zip
-  - rm tflint_linux_amd64.zip
-  - cd ~
+  - cd ..
+  - rm -rf tmp
+  - pip install --user ansible
+  - pip install --user ansible-lint
 
 script:
   # packer checks
@@ -34,10 +35,14 @@ script:
 
   # terraform
   - cd terraform/stage
+  - rm backend.tf
+  - mv terraform.tfvars.example terraform.tfvars
   - terraform get
   - terraform init
   - terraform validate
   - cd ../prod
+  - rm backend.tf
+  - mv terraform.tfvars.example terraform.tfvars
   - terraform get
   - terraform init
   - terraform validate

@@ -1,4 +1,5 @@
-project           = "infra-123456"
+project           = "devops-infra-271113"
 public_key_path   = "~/.ssh/appuser.pub"
+private_key_path  = "~/.ssh/appuser"
 app_source_ranges = ["0.0.0.0/0"]
 ssh_source_ranges = ["0.0.0.0/0"]

@@ -10,3 +10,5 @@ packer/variables.json
 devops-infra-271113-03dd569482c9.json
 
 jdauphant.nginx
+
+vault.key

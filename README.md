@@ -249,8 +249,10 @@ flag, but this is not recommended.
 
 **Задание со***
 
-Динамический инвентори заработал из прошлого задания, нужно было только поменять путь к `inventory` файлу в конфиге.
+* Динамический инвентори заработал из прошлого задания, нужно было только поменять путь к `inventory` файлу в конфиге.
 
 **Задание с****
 
+* С помощью секций `install` и `script` настроены проверки в `travis-ci`
 * Добавлен бейдж со статусом билда ветки `master`.
+* Значение различных секций трависа - [SO](https://stackoverflow.com/questions/34377017/what-are-the-differences-between-the-before-install-script-travis-yml-opti)
